@@ -1,0 +1,34 @@
+<html>
+<script type="text/javascript" src="../libs/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	var _jGameEngineServer=new function (){
+		this.onMessage=function(connection,message){
+			this.sendMessageTo(connection,message);
+			$('#message').html(message);
+		}
+		this.sendMessageTo=function(connection,message){
+			document.server.sendMessageTo(connection,message);
+		}
+	}
+	function _jGameEngineServeronMessage(connection,message){
+		_jGameEngineServer.onMessage(connection,message);
+	}
+</script>
+</head>
+  <!-- Results -->
+  Receiving from Client:<div id="message" style="" ></div>
+  <body>
+	<applet name="server"
+		archive="websocketserver.jar,webbit-all-in-one.jar"
+		code="server.java"
+		width="300"
+		height="300"
+		<param name="port" value="8080">
+		<param name="debug" value="1">
+		<param name="javaScriptPrefix" value="_jGameEngineServer">
+		MAYSCRIPT
+	>
+	You need java 1.7
+	</applet>
+  </body>
+</html>
